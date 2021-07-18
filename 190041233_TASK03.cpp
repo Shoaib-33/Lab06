@@ -1,91 +1,165 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define endl '\n'
 
-
+/// CODED BY SHOAIB
 class Coordinate
 {
-    private:
-      int a;
-      float b;
-      float l;
+private:
+    float x, y;
+public:
+    Coordinate(): x(0), y(0)
+    {
 
-    public:
+    }
+    Coordinate(float a, float b): x(a), y(b)
+    {
 
+    }
+    ~Coordinate()
+    {
 
-        Coordinate(int x,float y):a(x),b(y)
-        {
-
-        }
-        float getDistance(Coordinate c)
-        {
-          float p;
-          p=sqrt(pow(a-(c.a),2)+pow(b-(c.b),2));
-
-
-        }
-        float getDistance()
-        {
-
-
-            l=sqrt((a*a)+(b*b));
-            return l;
-
-        }
-        void move_x(float val)
-        {
-            a+=val;
-        }
-        void move_y(float val)
-        {
-            b+val;
-        }
-        void move(float val)
-        {
-            a+=val;
-            b+=val;
-        }
-
- bool operator <(const Coordinate &a)
- {
-     return (l<a.l);
- }
-  bool operator >(const Coordinate &a)
- {
-     return (l>a.l);
- }
-  bool operator =(const Coordinate &a)
- {
-     return (l==a.l);
- }
-Coordinate operator++()
-{
-    a++;
-    b++;
-}
-
-Coordinate operator--()
-{
-    a--;
-    b--;
-}
-
-
+    }
+    float getDistance()
+    {
+        return sqrt(x*x + y*y);
+    }
+    float getDistance(Coordinate c)
+    {
+        float a = pow((x - c.x),2)+pow((y - c.y),2);
+        float e=sqrt(a);
+        return e;
+    }
+    void move_x(float val)
+    {
+        x+=val;
+    }
+    void move_y(float val)
+    {
+        y+=val;
+    }
+    void move(float val)
+    {
+        x+=val;
+        y+=val;
+    }
+    void showPosition()
+    {
+        cout<<"Abscissa: "<<x<<"\n";
+        cout<<"Ordinate: "<<y<<"\n";
+    }
+    bool operator > (Coordinate &c);
+    bool operator < (Coordinate &c);
+    bool operator >= (Coordinate &c);
+    bool operator <= (Coordinate &c);
+    bool operator == (Coordinate &c);
+    bool operator != (Coordinate &c);
+    Coordinate operator ++ ();
+    Coordinate operator ++ (int);
+    Coordinate operator -- ();
+    Coordinate operator -- (int);
 };
+
+bool Coordinate::operator > (Coordinate &c)
+{
+    float a = getDistance();
+    float b = c.getDistance();
+    return (a > b);
+}
+
+bool Coordinate::operator < (Coordinate &c)
+{
+    float a = getDistance();
+    float b = c.getDistance();
+    return (a < b);
+}
+
+bool Coordinate::operator >= (Coordinate &c)
+{
+    float a = getDistance();
+    float b = c.getDistance();
+    return (a >= b);
+}
+
+bool Coordinate::operator <= ( Coordinate &c)
+{
+    float a = getDistance();
+    float b = c.getDistance();
+    return (a <= b) ;
+}
+
+bool Coordinate::operator == (Coordinate &c)
+{
+    float a = getDistance();
+    float b = c.getDistance();
+    return (a == b);
+}
+
+bool Coordinate::operator != (Coordinate &c)
+{
+    float a = getDistance();
+    float b = c.getDistance();
+    return (a != b);
+}
+
+Coordinate Coordinate::operator ++ ()
+{
+    return Coordinate(++x, ++y);
+}
+
+Coordinate Coordinate::operator ++ (int)
+{
+    return Coordinate(x++, y++);
+}
+
+Coordinate Coordinate::operator -- ()
+{
+    return Coordinate(--x, --y);
+}
+
+Coordinate Coordinate::operator -- (int)
+{
+    return Coordinate(x--, y--);
+}
 
 int main()
 {
-
-Coordinate m(1,1);
-Coordinate n(-1,-1);
-//++m;
-cout<<m.getDistance();
-cout<<endl;
-cout<<n.getDistance();
-cout<<endl;
-cout<< (m=n) <<endl;
-cout<<(m<n)<<endl;
-m.getDistance(n);
-move(1);
-
+    Coordinate c1(2,3), c2(-4,5);
+    c1.showPosition();
+    c2.showPosition();
+    cout<<c1.getDistance()<<"\n";
+    cout<<c2.getDistance()<<"\n";
+    cout<<c1.getDistance(c2)<<"\n";
+    cout<<c2.getDistance(c1)<<"\n";
+    c1.move(2);
+    c2.move(4);
+    c1.showPosition();
+    c2.showPosition();
+    cout<<c1.getDistance()<<"\n";
+    cout<<c2.getDistance()<<"\n";
+    cout<<c1.getDistance(c2)<<"\n";
+    cout<<c2.getDistance(c1)<<"\n";
+    Coordinate c3 = c1;
+    cout<<(c1>c3)<<"\n";
+    cout<<(c1<c3)<<"\n";
+    cout<<(c1>=c3)<<"\n";
+    cout<<(c1<=c3)<<"\n";
+    cout<<(c1==c3)<<"\n";
+    cout<<(c1!=c3)<<"\n";
+    ++c1;
+    ++c3;
+    c1.showPosition();
+    c3.showPosition();
+    c1++;
+    c3++;
+    c1.showPosition();
+    c3.showPosition();
+    --c1;
+    --c3;
+    c1.showPosition();
+    c3.showPosition();
+    c1--;
+    c3--;
+    c1.showPosition();
+    c3.showPosition();
 }
-
