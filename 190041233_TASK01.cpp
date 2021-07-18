@@ -51,25 +51,26 @@ public:
     {
         return Counter(count+a.count);
     }
-    Counter operator+(Counter);
+    friend Counter operator+(int,Counter);
 
 };
-Counter Counter::operator+(Counter a)
+///nonmember
+Counter operator+(int c, Counter a)
 {
-    Counter temp;
-    temp.count=count+a.count;
-    return temp;
+    return Counter(a.count+c);
 }
 
 int main()
 {
     Counter a,b,c;
+
     a++;
     b++;
     c=++a;
     c=a+b;
     b=b+5;
     a=a+b;
+    a=5+b;
     cout<<b.getCount()<<endl;
    cout<<a.getCount();
 
